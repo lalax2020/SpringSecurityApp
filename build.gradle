@@ -36,7 +36,7 @@ dependencies {
     // Database and Tools
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'com.mysql:mysql-connector-j'
+    runtimeOnly 'com.mysql:mysql-connector-j:8.3.0'
     annotationProcessor 'org.projectlombok:lombok'
 
     // Testing
@@ -49,3 +49,4 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
