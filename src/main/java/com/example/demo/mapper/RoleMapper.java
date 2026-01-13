@@ -2,9 +2,11 @@ package com.example.demo.mapper;
 
 import com.example.demo.dto.RoleDto;
 import com.example.demo.model.Role;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class RoleMapper {
     public RoleDto roleEntityToDto(Role role){
         return RoleDto.builder()
