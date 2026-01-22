@@ -13,10 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "USERS")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer id;
 
     @NonNull
@@ -30,11 +31,9 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinTable(name = "users_roles",
             joinColumns = {
-                @JoinColumn(name = "USERS_ID",
-                   referencedColumnName = "ID")},
-            inverseJoinColumns = {
-            @JoinColumn(name = "ROLES_ID",
-            referencedColumnName = "ID")}
+                @JoinColumn(name = "USER_ID",
+                   referencedColumnName = "USER_ID")},
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id")
     )
     private List<Role> roles;
 
@@ -50,11 +49,14 @@ public class User {
     @Builder.Default
     private Boolean enabled = true;
 
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @NaturalId(mutable = true)
+    @Column(name = "email_address", nullable = false, unique = true)
     private String emailAddress;
 
     private LocalDate birthDate;
